@@ -5,241 +5,224 @@ const siteUrl = 'https://2x.nz';
 const hostname = new URL(siteUrl).hostname;
 
 const redirects = {
-	'/privacy-policy': `${siteUrl}/posts/privacy-policy/`,
-	'/long': 'https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in/',
-	'/tit': '/posts/pin/',
-	'/q': '/posts/pin/',
-	'/t': `https://i.${hostname}`,
-	'/ak': 'https://akile.io/register?aff_code=503fe5ea-e7c5-4d68-ae05-6de99513680e',
-	'/yyb': 'https://www.rainyun.com/acofork_?s=bilibili',
-	'/wly': 'https://w1.wlylogin.com:8888/#/register?code=FNQwOQBM',
-	'/mly': 'https://muleyun.com/aff/GOTRJLPN',
-	'/tly': 'https://tianlicloud.cn/aff/HNNCFKGP',
-	'/kook': 'https://kook.vip/K29zpT',
-	'/gal': '/posts/gal/',
-	'/ok': 'https://acofork-uptime.zeabur.app/status/acofork',
-	'/donate': '/sponsors',
-	'/tg': 'https://t.me/+_07DERp7k1ljYTc1',
-	'/esa': 'https://tianchi.aliyun.com/specials/promotion/freetier/esa?taskCode=25254&recordId=c856e61228828a0423417a767828d166',
-	'/plan': 'https://acofork.notion.site/2e11e011d4e5800fa050e8f7cf448347',
-	'/iku': 'https://ikuuu.de/',
-	'/hnr': 'https://subspace.shop/products/lin-pianpian-keychain-the-weeping-swan-ten-days-of-the-citys-fall?_pos=1&_sid=5ba9d94dd&_ss=r'
+  // ========== 快捷短链 ==========
+  '/privacy-policy': `${siteUrl}/sponsors`,
+  '/long': 'https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in/',
+  '/tit': '/posts/pin/',
+  '/q': '/posts/pin/',
+  '/t': `https://i.${hostname}`,
+  '/ak': 'https://akile.io/register?aff_code=503fe5ea-e7c5-4d68-ae05-6de99513680e',
+  '/yyb': 'https://www.rainyun.com/acofork_?s=bilibili',
+  '/wly': 'https://w1.wlylogin.com:8888/#/register?code=FNQwOQBM',
+  '/mly': 'https://muleyun.com/aff/GOTRJLPN',
+  '/tly': 'https://tianlicloud.cn/aff/HNNCFKGP',
+  '/kook': 'https://kook.vip/K29zpT',
+  '/gal': '/posts/mac-gal/',
+  '/ok': 'https://acofork-uptime.zeabur.app/status/acofork',
+  '/donate': '/sponsors',
+  '/tg': 'https://t.me/+_07DERp7k1ljYTc1',
+  '/esa': 'https://tianchi.aliyun.com/specials/promotion/freetier/esa?taskCode=25254&recordId=c856e61228828a0423417a767828d166',
+  '/plan': 'https://acofork.notion.site/2e11e011d4e5800fa050e8f7cf448347',
+  '/iku': 'https://ikuuu.de/',
+  '/hnr': 'https://subspace.shop/products/lin-pianpian-keychain-the-weeping-swan-ten-days-of-the-citys-fall?_pos=1&_sid=5ba9d94dd&_ss=r',
+  '/bd': 'https://pan.baidu.com/s/5IumozyRtM1U66d41M0s9pg',
+  '/addqq': 'https://www.ifdian.net/item/3e7b83a0559311f1b74e52540025c377',
+
+  // ========== 已合并/重构的历史文章（内容已整合到现有文章） ==========
+  '/posts/163-free-domain-email/': '/posts/domain-email/',
+  '/posts/exmail-qq/': '/posts/domain-email/',
+  '/posts/netlify-webhook/': '/posts/github-webhook/',
+  '/posts/lskypro-local/': '/posts/hack-lskypro/',
+  '/posts/py-uploadserver/': '/posts/unknown-upload/',
+  '/posts/http-header-host/': '/posts/double-monitior/',
+  '/posts/cf-byoip/': '/posts/cf-fastip/',
+  '/posts/ddos-6t/': '/posts/review-ddos/',
+  '/posts/eopf-github-proxy/': '/posts/gh-proxy/',
+  '/posts/go-proxy-gh/': '/posts/gh-proxy/',
+  '/posts/vercel-github/': '/posts/gh-proxy/',
+  '/posts/ghedu-free-me/': '/posts/github-edu/',
+  '/posts/ghedu-free-name/': '/posts/github-edu/',
+  '/posts/ghedu-free-tech/': '/posts/github-edu/',
+  '/posts/noobai-vpre/': '/posts/ai-wife/',
+
+  // ========== 已删除/失效的文章（跳转到最相关文章或首页） ==========
+  '/posts/post-diff-guide/': '/',
+  '/posts/posts-diff/': '/',
+  '/posts/WPwebplayer/': '/',
+  '/posts/gal/': '/posts/mac-gal/',
+  '/posts/other-sites/': '/',
+  '/posts/expressive-code/': '/',
+  '/posts/cloudflare-imgbed-auto-backup/': '/posts/cf-randompic/',
+  '/posts/paoshoushou/': '/',
+  '/posts/wordpress-pinglunhuifu/': '/',
+  '/posts/h3c-debug/': '/',
+  '/posts/yuanbao/': '/',
+  '/posts/auto-icp-query/': '/',
+  '/posts/bypass-gfw/': '/',
+  '/posts/announcement/': '/',
+  '/posts/qq/': '/',
+  '/posts/other-website/': '/',
+  '/posts/element/': '/posts/pin/',
+  '/posts/email-privacy/': '/posts/domain-email/',
+  '/posts/cf-saas/': '/posts/cf-fastip/',
+  '/posts/fisco/': '/',
+  '/posts/fisco-offline/': '/',
+  '/posts/123/': '/',
+  '/posts/privacy-policy/': '/sponsors',
 };
 
 function generateRedirectHTML(destination, path) {
-	const title = '《二叉树树》官方网站';
-	
-	return `<!DOCTYPE html>
+  const title = '《二叉树树》官方网站';
+
+  return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="2;url=${destination}">
-	<meta name="robots" content="noindex">
-	<link rel="canonical" href="${destination}">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>重定向中... - ${title}</title>
-	<script>
-		setTimeout(function() {
-			window.location.href = "${destination}";
-		}, 2000);
-	</script>
-	<style>
-		:root {
-			--background: 0 0% 100%;
-			--foreground: 240 10% 3.9%;
-			--muted: 240 4.8% 95.9%;
-			--muted-foreground: 240 3.8% 46.1%;
-			--primary: 240 5.9% 10%;
-			--border: 240 5.9% 90%;
-		}
-		@media (prefers-color-scheme: dark) {
-			:root {
-				--background: 240 10% 3.9%;
-				--foreground: 0 0% 98%;
-				--muted: 240 3.7% 15.9%;
-				--muted-foreground: 240 5% 64.9%;
-				--primary: 0 0% 98%;
-				--border: 240 3.7% 15.9%;
-			}
-		}
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-		body {
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-			background: hsl(var(--background));
-			color: hsl(var(--foreground));
-			min-height: 100vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 1rem;
-		}
-		.container {
-			text-align: center;
-			max-width: 28rem;
-			width: 100%;
-		}
-		.icon-wrapper {
-			display: inline-flex;
-			padding: 1.5rem;
-			border-radius: 9999px;
-			background: hsl(var(--primary) / 0.1);
-			margin-bottom: 1.5rem;
-		}
-		.icon {
-			width: 4rem;
-			height: 4rem;
-			color: hsl(var(--primary));
-		}
-		h1 {
-			font-size: 1.875rem;
-			font-weight: 700;
-			margin-bottom: 1rem;
-		}
-		.description {
-			font-size: 1.125rem;
-			color: hsl(var(--muted-foreground));
-			margin-bottom: 1.5rem;
-		}
-		.destination {
-			padding: 1rem;
-			border-radius: 0.5rem;
-			border: 1px solid hsl(var(--border));
-			background: hsl(var(--muted) / 0.5);
-			margin-bottom: 1.5rem;
-			word-break: break-all;
-		}
-		.destination code {
-			font-size: 0.875rem;
-			font-family: monospace;
-		}
-		.loading {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 0.5rem;
-			font-size: 0.875rem;
-			color: hsl(var(--muted-foreground));
-			margin-bottom: 1.5rem;
-		}
-		.spinner {
-			width: 1rem;
-			height: 1rem;
-			border: 2px solid hsl(var(--muted-foreground));
-			border-top-color: transparent;
-			border-radius: 50%;
-			animation: spin 1s linear infinite;
-		}
-		@keyframes spin {
-			to { transform: rotate(360deg); }
-		}
-		.manual-link {
-			margin-top: 1rem;
-		}
-		.manual-text {
-			font-size: 0.875rem;
-			color: hsl(var(--muted-foreground));
-			margin-bottom: 1rem;
-		}
-		.button {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.5rem;
-			padding: 0.5rem 1rem;
-			border-radius: 0.375rem;
-			background: hsl(var(--primary));
-			color: hsl(var(--background));
-			text-decoration: none;
-			font-size: 0.875rem;
-			font-weight: 500;
-			transition: opacity 0.2s;
-		}
-		.button:hover {
-			opacity: 0.9;
-		}
-	</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="2;url=${destination}">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="${destination}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重定向中... - ${title}</title>
+  <script>
+    setTimeout(function() {
+      window.location.href = "${destination}";
+    }, 2000);
+  </script>
+  <style>
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --primary: 240 5.9% 10%;
+      --border: 240 5.9% 90%;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+        --muted: 240 3.7% 15.9%;
+        --muted-foreground: 240 5% 64.9%;
+        --primary: 0 0% 98%;
+        --border: 240 3.7% 15.9%;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .container { text-align: center; max-width: 28rem; width: 100%; }
+    .icon-wrapper {
+      display: inline-flex; padding: 1.5rem; border-radius: 9999px;
+      background: hsl(var(--primary) / 0.1); margin-bottom: 1.5rem;
+    }
+    .icon { width: 4rem; height: 4rem; color: hsl(var(--primary)); }
+    h1 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
+    .description {
+      font-size: 1.125rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem;
+    }
+    .destination {
+      padding: 1rem; border-radius: 0.5rem; border: 1px solid hsl(var(--border));
+      background: hsl(var(--muted) / 0.5); margin-bottom: 1.5rem; word-break: break-all;
+    }
+    .destination code { font-size: 0.875rem; font-family: monospace; }
+    .loading {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem;
+    }
+    .spinner {
+      width: 1rem; height: 1rem; border: 2px solid hsl(var(--muted-foreground));
+      border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .manual-link { margin-top: 1rem; }
+    .manual-text { font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 1rem; }
+    .button {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
+      border-radius: 0.375rem; background: hsl(var(--primary)); color: hsl(var(--background));
+      text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: opacity 0.2s;
+    }
+    .button:hover { opacity: 0.9; }
+  </style>
 </head>
 <body>
-	<div class="container">
-		<div class="icon-wrapper">
-			<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<circle cx="12" cy="12" r="10"/>
-				<path d="M12 16l4-4-4-4M8 12h8"/>
-			</svg>
-		</div>
-		
-		<h1>正在重定向</h1>
-		
-		<p class="description">${title} 正在将您重定向至</p>
-		
-		<div class="destination">
-			<code>${destination}</code>
-		</div>
-		
-		<div class="loading">
-			<div class="spinner"></div>
-			<span>请稍候...</span>
-		</div>
-		
-		<div class="manual-link">
-			<p class="manual-text">如果没有自动跳转，请点击下方按钮</p>
-			<a href="${destination}" class="button">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-					<polyline points="15 3 21 3 21 9"/>
-					<line x1="10" y1="14" x2="21" y2="3"/>
-				</svg>
-				手动跳转
-			</a>
-		</div>
-	</div>
+  <div class="container">
+    <div class="icon-wrapper">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 16l4-4-4-4M8 12h8"/>
+      </svg>
+    </div>
+    <h1>正在重定向</h1>
+    <p class="description">${title} 正在将您重定向至</p>
+    <div class="destination"><code>${destination}</code></div>
+    <div class="loading">
+      <div class="spinner"></div>
+      <span>请稍候...</span>
+    </div>
+    <div class="manual-link">
+      <p class="manual-text">如果没有自动跳转，请点击下方按钮</p>
+      <a href="${destination}" class="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        手动跳转
+      </a>
+    </div>
+  </div>
 </body>
 </html>`;
 }
 
 export default function redirectsPlugin() {
-	return {
-		name: 'vite-plugin-redirects',
-		
-		// 开发模式：配置中间件处理重定向
-		configureServer(server) {
-			server.middlewares.use((req, res, next) => {
-				// 移除查询参数和尾部斜杠
-				let path = req.url?.split('?')[0];
-				if (path && path.endsWith('/') && path !== '/') {
-					path = path.slice(0, -1);
-				}
-				
-				if (path && path in redirects) {
-					const destination = redirects[path];
-					res.writeHead(302, { Location: destination });
-					res.end();
-					return;
-				}
-				
-				next();
-			});
-		},
-		
-		// 构建模式：生成静态重定向文件
-		closeBundle() {
-			const outputDir = 'build';
-			
-			for (const [path, destination] of Object.entries(redirects)) {
-				const outputPath = join(outputDir, path.slice(1));
-				
-				// 创建目录
-				mkdirSync(outputPath, { recursive: true });
-				
-				// 写入 index.html
-				const htmlPath = join(outputPath, 'index.html');
-				writeFileSync(htmlPath, generateRedirectHTML(destination, path));
-				
-				console.log(`✓ Generated redirect: ${path} -> ${destination}`);
-			}
-		}
-	};
+  return {
+    name: 'vite-plugin-redirects',
+
+    // 开发模式：配置中间件处理重定向
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        // 移除查询参数和尾部斜杠
+        let path = req.url?.split('?')[0];
+        if (path && path.endsWith('/') && path !== '/') {
+          path = path.slice(0, -1);
+        }
+
+        if (path && path in redirects) {
+          const destination = redirects[path];
+          res.writeHead(302, { Location: destination });
+          res.end();
+          return;
+        }
+
+        next();
+      });
+    },
+
+    // 构建模式：生成静态重定向文件
+    closeBundle() {
+      const outputDir = 'build';
+
+      for (const [path, destination] of Object.entries(redirects)) {
+        const outputPath = join(outputDir, path.slice(1));
+
+        // 创建目录
+        mkdirSync(outputPath, { recursive: true });
+
+        // 写入 index.html
+        const htmlPath = join(outputPath, 'index.html');
+        writeFileSync(htmlPath, generateRedirectHTML(destination, path));
+
+        console.log(`✓ Generated redirect: ${path} -> ${destination}`);
+      }
+    }
+  };
 }

@@ -10,10 +10,11 @@
 	},
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && node scripts/post-images.js",
+		"build": "node scripts/prebuild.js",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"new-post": "node scripts/new-post.js",
+		"clean": "node scripts/clean-unused-images.js",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"deploy": "pnpm build && wrangler deploy && echo \"Tips: 若该次发布为文章更新，请手动组织一次携带文章的Git提交并推送到远端仓库\""
@@ -51,6 +52,7 @@
 		"dompurify": "^3.4.1",
 		"feed": "^5.2.1",
 		"markdown-it": "^14.1.1",
+		"masonry-layout": "^4.2.2",
 		"photoswipe": "^5.4.4",
 		"qrcode": "^1.5.4"
 	}
